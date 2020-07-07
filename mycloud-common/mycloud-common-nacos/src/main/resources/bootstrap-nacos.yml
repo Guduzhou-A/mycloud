@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.50.129:8848
+        file-extension: yaml
+      discovery:
+        server-addr: 192.168.50.129:8848
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+    protocol: nacos
+    address: nacos://192.168.50.129:8848
+  protocol:
+    name: dubbo
+    port: 20880
+  consumer:
+    timeout: 20000
+    check: false

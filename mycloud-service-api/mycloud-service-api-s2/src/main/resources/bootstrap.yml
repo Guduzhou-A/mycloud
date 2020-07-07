@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: service-api-s2
+  profiles:
+    include: nacos,dubbo-consumer
+server:
+  port: 8091

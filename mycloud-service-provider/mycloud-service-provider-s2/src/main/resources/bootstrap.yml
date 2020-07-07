@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: service-provider-s2
+  profiles:
+    include: nacos,dubbo-provider
+server:
+  port: 9091

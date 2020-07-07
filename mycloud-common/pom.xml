@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <packaging>pom</packaging>
+    <modules>
+        <module>mycloud-common-config</module>
+        <module>mycloud-common-base</module>
+        <module>mycloud-common-core</module>
+        <module>mycloud-common-security</module>
+        <module>mycloud-common-nacos</module>
+    </modules>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>mycloud-master</artifactId>
+        <groupId>org.gdz.mycloud</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <groupId>org.gdz.mycloud.common</groupId>
+    <artifactId>mycloud-common</artifactId>
+    <name>mycloud-common</name>
+    <dependencies>
+
+
+        <!--fast json-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons-collections4.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2.version}</version>
+        </dependency>
+
+
+        <!--mapper-->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${modelmapper.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

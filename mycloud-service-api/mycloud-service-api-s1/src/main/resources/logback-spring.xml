@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <contextName>logback</contextName>
+    <!--    <property name="log.path" value="${LOG_PATH}"/>-->
+    <springProperty scope="context" name="log.pathinfo" source="log.info.path"
+                    defaultValue="/app/service_logs/mycloud-service-provider/info/mycloud-service-web-info"/>
+    <springProperty scope="context" name="log.patherror" source="log.error.path"
+                    defaultValue="/app/service_logs/mycloud-service-provider/error/mycloud-service-web-error"/>
+    <springProperty scope="context" name="applicationName" source="spring.application.name"
+                    defaultValue="mycloud-service-providerWeb"/>
+    <springProperty scope="context" name="applicationStack" source="server.profile"/>
+
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="info_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <File>${log.pathinfo}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.pathinfo}/%d{yyyy-MM, aux}/its-web-info.%d{yyyy-MM-dd}-%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100mb</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory> <!-- 90 day, 24 hours -->
+            <totalSizeCap>100GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+    <appender name="error_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <File>${log.patherror}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.patherror}/%d{yyyy-MM, aux}/its-web-error.%d{yyyy-MM-dd}-%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100mb</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory> <!-- 90 day, 24 hours -->
+            <totalSizeCap>100GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印WARN日志 -->
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="info_log"/>
+        <appender-ref ref="error_log"/>
+    </root>
+    <logger name="org.mybatis" level="INFO" additivity="true">
+        <appender-ref ref="console"/>
+        <appender-ref ref="info_log"/>
+        <appender-ref ref="error_log"/>
+    </logger>
+
+</configuration>

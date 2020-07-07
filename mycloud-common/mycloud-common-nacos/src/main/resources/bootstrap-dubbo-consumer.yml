@@ -1,0 +1,9 @@
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+    address: nacos://192.168.50.129:8848
+  consumer:
+    timeout: 20000
+    check: false
