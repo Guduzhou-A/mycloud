@@ -8,6 +8,7 @@ import org.gdz.mycloud.common.nacos.config.properties.api.s1.S1Properties;
 import org.gdz.mycloud.common.nacos.discovery.DiscoveryConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -16,16 +17,17 @@ import org.springframework.context.annotation.Import;
  * @Date: Created in 19:27 2020/6/28 0028
  * @Modified By:
  */
-@SpringBootApplication(scanBasePackages = {"org.gdz.mycloud.service.provider.s1.core"})
+@SpringBootApplication(scanBasePackages = {"org.gdz.mycloud.service.provider.s1.core",
+        "org.gdz.mycloud.common.nacos.config.properties.api.s1" })
 @Slf4j
-@EnableDubbo(scanBasePackages = {"org.gdz.mycloud.service.provider.api.s1"})
-@Import({DiscoveryConfig.class, MyWebMvcConfig.class, S1Properties.class, GlobalExceptionHandler.class})
+@EnableDubbo(scanBasePackages = {"org.gdz.mycloud.service.provider.s1.core"})
+@Import({DiscoveryConfig.class, MyWebMvcConfig.class,  GlobalExceptionHandler.class})
 public class ServiceProviderApplication {
 
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(ServiceProviderApplication.class);
         application.run(args);
-        log.info("ServiceProviderApplication started successfully");
+        log.info("s1 ServiceProviderApplication started successfully");
     }
 
 }

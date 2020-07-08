@@ -20,16 +20,12 @@ import org.springframework.stereotype.Component;
 @Service(version = "1.0.0")
 @RefreshScope
 public class S1ProviderService implements S1ProviderApi {
-
-    @Value("${s1.name}")
-    private String useLocalCache;
-
     @Autowired
     private S1Properties s1Properties;
 
     @Override
     public Result<String> test() {
         System.out.println(s1Properties);
-        return ResultBuilder.buildBussinessOk(useLocalCache);
+        return ResultBuilder.buildBussinessOk(s1Properties.getName());
     }
 }

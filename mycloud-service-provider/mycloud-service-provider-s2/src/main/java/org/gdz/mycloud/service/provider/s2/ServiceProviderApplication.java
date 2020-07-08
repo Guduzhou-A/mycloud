@@ -17,16 +17,17 @@ import org.springframework.context.annotation.Import;
  * @Date: Created in 19:27 2020/6/28 0028
  * @Modified By:
  */
-@SpringBootApplication(scanBasePackages = {"org.gdz.mycloud.service.provider.s2.core"})
+@SpringBootApplication(scanBasePackages = {"org.gdz.mycloud.service.provider.s2.core",
+        "org.gdz.mycloud.common.nacos.config.properties.api.s2"})
 @Slf4j
-@EnableDubbo(scanBasePackages = {"org.gdz.mycloud.service.provider.api.s2"})
-@Import({DiscoveryConfig.class, MyWebMvcConfig.class, S2Properties.class, GlobalExceptionHandler.class})
+@EnableDubbo(scanBasePackages = {"org.gdz.mycloud.service.provider.s2.core"})
+@Import({DiscoveryConfig.class, MyWebMvcConfig.class, GlobalExceptionHandler.class})
 public class ServiceProviderApplication {
 
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(ServiceProviderApplication.class);
         application.run(args);
-        log.info("ServiceProviderApplication started successfully");
+        log.info("s2 ServiceProviderApplication started successfully");
     }
 
 }

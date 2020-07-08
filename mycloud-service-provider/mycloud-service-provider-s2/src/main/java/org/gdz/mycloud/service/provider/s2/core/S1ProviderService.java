@@ -21,15 +21,12 @@ import org.springframework.stereotype.Component;
 @RefreshScope
 public class S1ProviderService implements S2ProviderApi {
 
-    @Value("${s1.name}")
-    private String useLocalCache;
-
     @Autowired
     private S2Properties s2Properties;
 
     @Override
     public Result<String> test() {
         System.out.println(s2Properties);
-        return ResultBuilder.buildBussinessOk(useLocalCache);
+        return ResultBuilder.buildBussinessOk(s2Properties.getName());
     }
 }

@@ -25,7 +25,7 @@ public class ServiceApiApplication {
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(ServiceApiApplication.class);
         application.run(args);
-        log.info("ServiceApiApplication started successfully");
+        log.info("s2 ServiceApiApplication started successfully");
     }
 
 }
